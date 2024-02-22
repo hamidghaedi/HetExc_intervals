@@ -24,7 +24,7 @@ We ordered genes based on the number of HetExc intervals identified in them to s
 
 ::: {style="overflow-y: auto; max-height: 400px;"}
 | Gene Symbol      | Transcript ID      | HetExc interval count | Affected exon IDs                                                                                                |
-|------------------|--------------------|-----------------------|------------------------------------------------------------------------------------------------------------------|
+|---------------|---------------|---------------|-----------------------------|
 | *MUC3A*          | ENST00000379458.9  | 8                     | ENSE00003733255.1, ENSE00001760877.2, ENSE00003728907.1, *ENSE00003711593.1*                                     |
 | ENSG00000241489  | ENST00000651111.1  | 7                     | ENSE00003850317.1                                                                                                |
 | *FGF13*          | ENST00000315930.11 | 7                     | ENSE00003765119.2, ENSE00001124987.8                                                                             |
