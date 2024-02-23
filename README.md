@@ -63,16 +63,32 @@ To further prioritize the intervals, we calculated a weighted variant density sc
 
 $$ wvd_i = \log_{10} \left( \frac{v_i}{\sqrt{\frac{l_i}{v_i^2}}} \right) $$
 
-where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length of the interval in base pairs (bp). This formula utilizes a logarithmic transformation to emphasize variations in variant density while considering the size of the interval.
+where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length of the interval in base pairs (bp).The calculated weighted variant density prioritizes intervals with larger sizes while simultaneously considering a higher number of variants. This logarithmic transformation ensures that the metric reflects the joint impact of interval size and variant count, providing a comprehensive measure of variant density across genomic intervals.
 
-| Gene Symbol | Transcript ID     | Exon ID           | HetExc.chr | HetExc.start | HetExc.end | HetExc.nCount | HetExc.length |
-|-------------|-------------------|-------------------|------------|--------------|------------|---------------|---------------|
-| *ZNF717*    | ENST00000652011.2 | ENSE00003849189.2 | chr3       | 75736810     | 75738889   | 77            | 2079          |
-| *MUC3A*     | ENST00000379458.9 | ENSE00003733255.1 | chr7       | 100959267    | 100960873  | 60            | 1606          |
-| *GPRIN2*    | ENST00000374314.6 | ENSE00003923399.1 | chr10      | 46549129     | 46550723   | 28            | 1594          |
-| *MUC6*      | ENST00000421673.7 | ENSE00001739408.1 | chr11      | 1016608      | 1018523    | 113           | 1915          |
-| *OR9G1*     | ENST00000642097.1 | ENSE00003812474.1 | chr11      | 56700404     | 56701554   | 59            | 1150          |
-| *KCNJ12*    | ENST00000583088.6 | ENSE00002732101.3 | chr17      | 21415290     | 21416967   | 56            | 1677          |
-| *MAGEB16*   | ENST00000399988.6 | ENSE00003978144.1 | chrX       | 35802147     | 35803191   | 9             | 1044          |
+| HetExc interval          | HetExc var. count | HetExc int. length(bp) | Weighted HetExc var. density | GeneSymb.(Transcript ID)      | Exon ID           |
+|--------------------------|-------------------|------------------------|------------------------------|-------------------------------|-------------------|
+| chr11:1016608-1018523    | 113               | 1915                   | 2.47                         | *MUC6* (ENST00000421673.7)    | ENSE00001739408.1 |
+| chr3:75736810-75738889   | 77                | 2079                   | 2.11                         | *ZNF717* (ENST00000652011.2)  | ENSE00003849189.2 |
+| chr11:56700404-56701554  | 59                | 1150                   | 2.01                         | *OR9G1* (ENST00000642097.1)   | ENSE00003812474.1 |
+| chr11:56375721-56376331  | 48                | 610                    | 1.97                         | *OR8U1* (ENST00000302270.1)   | ENSE00001142881.1 |
+| chr7:100959267-100960873 | 60                | 1606                   | 1.95                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
+| chr7:100959267-100960873 | 60                | 1606                   | 1.95                         | *MUC3A* (ENST00000379458.9)   | ENSE00001760877.2 |
+| chr17:21415290-21416967  | 56                | 1677                   | 1.88                         | *KCNJ12* (ENST00000583088.6)  | ENSE00002732101.3 |
+| chr7:100953518-100954302 | 43                | 784                    | 1.82                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
+| chr7:100951864-100952631 | 40                | 767                    | 1.76                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
+| chr3:75665550-75666394   | 34                | 844                    | 1.6                          | *FRG2C* (ENST00000308062.8)   | ENSE00003920067.1 |
+| chr19:54631530-54632196  | 27                | 666                    | 1.45                         | *LILRB1* (ENST00000324602.12) | ENSE00003671569.1 |
+| chr19:54631530-54632196  | 27                | 666                    | 1.45                         | *LILRB1* (ENST00000324602.12) | ENSE00002470335.1 |
+| chr7:100956990-100957266 | 21                | 276                    | 1.42                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
+| chr7:142773266-142773518 | 19                | 252                    | 1.36                         | *PRSS2* (ENST00000539842.6)   | ENSE00003783126.1 |
+| chr10:46549129-46550723  | 28                | 1594                   | 1.29                         | *GPRIN2* (ENST00000374314.6)  | ENSE00003923399.1 |
+| chr19:54633043-54633269  | 16                | 226                    | 1.23                         | *LILRB1* (ENST00000324602.12) | ENSE00002482998.1 |
+| chr19:54278966-54279050  | 12                | 84                     | 1.2                          | *LILRB2* (ENST00000314446.10) | ENSE00003604374.1 |
+| chr19:39885702-39886439  | 20                | 737                    | 1.17                         | *FCGBP* (ENST00000616721.6)   | ENSE00003736302.1 |
+| chr19:39885702-39886439  | 20                | 737                    | 1.17                         | *FCGBP* (ENST00000616721.6)   | ENSE00003726191.1 |
+| chr19:54574781-54575019  | 15                | 238                    | 1.16                         | *LILRA2* (ENST00000391738.8)  | ENSE00003895381.1 |
+| chr13:25097061-25097260  | 13                | 199                    | 1.08                         | *PABPC3* (ENST00000281589.5)  | ENSE00001425120.4 |
+| chr7:100956319-100956539 | 13                | 220                    | 1.06                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
+| chr17:21703079-21703539  | 15                | 460                    | 1.02                         | *KCNJ18* (ENST00000567955.3)  | ENSE00002608500.3 |
 
 #### Are HetExc intervals depleted for other class of variants?
