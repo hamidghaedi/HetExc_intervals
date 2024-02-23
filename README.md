@@ -33,7 +33,7 @@ The results section presents details regarding our analysis of exome VCF files. 
 We ordered genes based on the number of HetExc intervals identified in them to see which genes have the highest level of HetExc intervals. The table below represents our findings, where it can be seen that *MUC3A* is the top one, harboring a total of eight intervals residing in four exons.
 
 | Gene Symbol      | Transcript ID      | HetExc interval count | Affected exon IDs                                                                                                |
-|----------------|----------------|----------------|-------------------------|
+|------------------|--------------------|-----------------------|------------------------------------------------------------------------------------------------------------------|
 | *MUC3A*          | ENST00000379458.9  | 8                     | ENSE00003733255.1, ENSE00001760877.2, ENSE00003728907.1, *ENSE00003711593.1*                                     |
 | ENSG00000241489  | ENST00000651111.1  | 7                     | ENSE00003850317.1                                                                                                |
 | *FGF13*          | ENST00000315930.11 | 7                     | ENSE00003765119.2, ENSE00001124987.8                                                                             |
@@ -59,16 +59,20 @@ We ordered genes based on the number of HetExc intervals identified in them to s
 
 A total of 631 HetExc intervals were identified, with a median size of 89 bp (interquartile range: 227), harboring 2 to 113 HetExc variants. There are cases with HetExc interval length \> 1 kb, with a significant number of variants in them. The table below shows cases where the HetExc interval length is over 1 kb, along with the number of variants identified in them.
 
+To further prioritize the intervals, we calculated a weighted variant density score. The approach involves filtering intervals with a length less than 20bp then the weighted variant density ($wvd_i$) for interval $i$ is calculated using the formula:
+
+$$ wvd_i = \log_{10} \left( \frac{v_i}{\sqrt{\frac{l_i}{v_i^2}}} \right) $$
+
+where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length of the interval in base pairs (bp). This formula utilizes a logarithmic transformation to emphasize variations in variant density while considering the size of the interval.
+
 | Gene Symbol | Transcript ID     | Exon ID           | HetExc.chr | HetExc.start | HetExc.end | HetExc.nCount | HetExc.length |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| *ZNF717*      | ENST00000652011.2 | ENSE00003849189.2 | chr3       | 75736810     | 75738889   | 77            | 2079          |
-| *MUC3A*       | ENST00000379458.9 | ENSE00003733255.1 | chr7       | 100959267    | 100960873  | 60            | 1606          |
-| *GPRIN2*      | ENST00000374314.6 | ENSE00003923399.1 | chr10      | 46549129     | 46550723   | 28            | 1594          |
-| *MUC6*        | ENST00000421673.7 | ENSE00001739408.1 | chr11      | 1016608      | 1018523    | 113           | 1915          |
-| *OR9G1*       | ENST00000642097.1 | ENSE00003812474.1 | chr11      | 56700404     | 56701554   | 59            | 1150          |
-| *KCNJ12*      | ENST00000583088.6 | ENSE00002732101.3 | chr17      | 21415290     | 21416967   | 56            | 1677          |
-| *MAGEB16*     | ENST00000399988.6 | ENSE00003978144.1 | chrX       | 35802147     | 35803191   | 9             | 1044          |
+|-------------|-------------------|-------------------|------------|--------------|------------|---------------|---------------|
+| *ZNF717*    | ENST00000652011.2 | ENSE00003849189.2 | chr3       | 75736810     | 75738889   | 77            | 2079          |
+| *MUC3A*     | ENST00000379458.9 | ENSE00003733255.1 | chr7       | 100959267    | 100960873  | 60            | 1606          |
+| *GPRIN2*    | ENST00000374314.6 | ENSE00003923399.1 | chr10      | 46549129     | 46550723   | 28            | 1594          |
+| *MUC6*      | ENST00000421673.7 | ENSE00001739408.1 | chr11      | 1016608      | 1018523    | 113           | 1915          |
+| *OR9G1*     | ENST00000642097.1 | ENSE00003812474.1 | chr11      | 56700404     | 56701554   | 59            | 1150          |
+| *KCNJ12*    | ENST00000583088.6 | ENSE00002732101.3 | chr17      | 21415290     | 21416967   | 56            | 1677          |
+| *MAGEB16*   | ENST00000399988.6 | ENSE00003978144.1 | chrX       | 35802147     | 35803191   | 9             | 1044          |
 
 #### Are HetExc intervals depleted for other class of variants?
-
-
