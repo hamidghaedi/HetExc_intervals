@@ -100,7 +100,7 @@ where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length
 | chr17:21703079-21703539  | 15                | 460                    | 1.02                         | *KCNJ18* (ENST00000567955.3)  | ENSE00002608500.3 |
 
 ##### HetExc intervals show a depletion of high-quality variants (PASS filter in VCF)
-![image]()
+![image](https://github.com/hamidghaedi/HetExc_intervals/blob/main/images/variant%20enrichement-1.png)
 
 ##### Different genes exhibit varying levels of enrichment and depletion for high-quality variants in HetExc intervals.
-![image]()
+![image](https://github.com/hamidghaedi/HetExc_intervals/blob/main/images/qc%20metric%20per%20gene-1.png)
