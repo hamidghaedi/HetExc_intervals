@@ -1,4 +1,4 @@
-# genomic-interval-enrichment-analysis-for-extreme-heterozygote-excess-HetExc-variants
+# Genomic Hot Spots in Coding Regions: identifying regions enriched for heterozygote excess variants(HetExc)
 
 ## Intro
 
@@ -99,4 +99,8 @@ where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length
 | chr7:100956319-100956539 | 13                | 220                    | 1.06                         | *MUC3A* (ENST00000379458.9)   | ENSE00003733255.1 |
 | chr17:21703079-21703539  | 15                | 460                    | 1.02                         | *KCNJ18* (ENST00000567955.3)  | ENSE00002608500.3 |
 
-#### Are HetExc intervals depleted for other class of variants?
+##### HetExc intervals show a depletion of high-quality variants (PASS filter in VCF)
+![image]()
+
+##### Different genes exhibit varying levels of enrichment and depletion for high-quality variants in HetExc intervals.
+![image]()
