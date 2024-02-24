@@ -1,1 +1,1 @@
-image dir
+images dir
