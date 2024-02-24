@@ -14,7 +14,7 @@ Deviations from Hardy-Weinberg Equilibrium (HWE) are not solely rooted in biolog
 
 We obtained exome and genome VCF files from gnomAD v4 (accessed on 2023-11-16) and processed them on HPC clusters provided by the Digital Research Alliance of Canada (the Alliance). The processing included the following steps: 1. Obtaining VCF files for chromosomes 1-22 and X.
 
-2.  Filtering variants to retain only HetExc variants (indicated by an inbreeding coefficient ≤ -0.3).
+2.  Filtering variants to retain only HetExc variants (indicated by an inbreeding coefficient ≤ -0.3).The inbreeding coefficient is a measure of the likelihood of inbreeding occurring in a population. A positive value indicates an excess of heterozygotes (less inbreeding), and a negative value indicates an excess of homozygotes (more inbreeding). 
 
 3.  Intersecting VCF files with exon coordinates obtained from GENCODE.
 
@@ -23,6 +23,14 @@ We obtained exome and genome VCF files from gnomAD v4 (accessed on 2023-11-16) a
 The Bash script used for processing exome VCF files can be found in the scripts directory under the name gnomad_proc.sh.
 
 **Annotating the identified intervals**
+We calculated the enrichment of identified HetExc intervals for different types of variants based on the variant quality control (QC) metrics available from gnomAD v4. The FILTER column in VCF files provides various values, including AC0, AS_VQSR, InbreedingCoeff, and PASS.
+
+*AC0* (Allele Count 0): Indicates that no sample had a high-quality genotype at this variant site (with criteria such as GQ>=20, DP>=10, and allele balance > 0.2 for heterozygotes).
+
+*InbreedingCoeff*: Signifies an excess of heterozygotes at the site compared to Hardy-Weinberg expectations, using a threshold of -0.3 on the InbreedingCoefficient metric.
+
+*AS_VQSR* (Allele-Specific GATK Variant Quality Score Recalibration): The AS version of GATK VQSR is utilized by gnomAD to compute a score indicating the confidence that a variant is real rather than an artifact. This score is derived from allele-specific information and contributes to the assessment of variant authenticity.
+
 
 ## Results
 
@@ -33,7 +41,7 @@ The results section presents details regarding our analysis of exome VCF files. 
 We ordered genes based on the number of HetExc intervals identified in them to see which genes have the highest level of HetExc intervals. The table below represents our findings, where it can be seen that *MUC3A* is the top one, harboring a total of eight intervals residing in four exons.
 
 | Gene Symbol      | Transcript ID      | HetExc interval count | Affected exon IDs                                                                                                |
-|------------------|--------------------|-----------------------|------------------------------------------------------------------------------------------------------------------|
+|------------------|------------------|------------------|-------------------|
 | *MUC3A*          | ENST00000379458.9  | 8                     | ENSE00003733255.1, ENSE00001760877.2, ENSE00003728907.1, *ENSE00003711593.1*                                     |
 | ENSG00000241489  | ENST00000651111.1  | 7                     | ENSE00003850317.1                                                                                                |
 | *FGF13*          | ENST00000315930.11 | 7                     | ENSE00003765119.2, ENSE00001124987.8                                                                             |
@@ -66,7 +74,7 @@ $$ wvd_i = \log_{10} \left( \frac{v_i}{\sqrt{\frac{l_i}{v_i^2}}} \right) $$
 where $v_i$ represents the variant count in interval $i$ and $l_i$ is the length of the interval in base pairs (bp).The calculated weighted variant density prioritizes intervals with larger sizes while simultaneously considering a higher number of variants. This logarithmic transformation ensures that the metric reflects the joint impact of interval size and variant count, providing a comprehensive measure of variant density across genomic intervals.
 
 | HetExc interval          | HetExc var. count | HetExc int. length(bp) | Weighted HetExc var. density | GeneSymb.(Transcript ID)      | Exon ID           |
-|--------------------------|-------------------|------------------------|------------------------------|-------------------------------|-------------------|
+|------------|------------|------------|------------|------------|------------|
 | chr11:1016608-1018523    | 113               | 1915                   | 2.47                         | *MUC6* (ENST00000421673.7)    | ENSE00001739408.1 |
 | chr3:75736810-75738889   | 77                | 2079                   | 2.11                         | *ZNF717* (ENST00000652011.2)  | ENSE00003849189.2 |
 | chr11:56700404-56701554  | 59                | 1150                   | 2.01                         | *OR9G1* (ENST00000642097.1)   | ENSE00003812474.1 |
